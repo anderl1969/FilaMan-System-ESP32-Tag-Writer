@@ -270,7 +270,7 @@ void oledShowProgressBar(const uint8_t step, const uint8_t numSteps, const char*
     display.display();
 }
 
-void oledShowWeight(uint16_t weight) {
+void oledShowWeight(int16_t weight) {
     // Display Gewicht
     oledcleardata();
     display.setTextSize(3);

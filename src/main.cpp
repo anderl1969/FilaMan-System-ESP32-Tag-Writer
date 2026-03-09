@@ -168,7 +168,7 @@ void loop() {
       int16_t displayWeight = getFilteredDisplayWeight();
       if (mainTaskWasPaused || (weight != lastWeight && (nfcReaderState == NFC_IDLE || tagProcessed)))
       {
-        (displayWeight < 2) ? ((displayWeight < -2) ? oledDisplayText("!! -0") : oledShowWeight(0)) : oledShowWeight(displayWeight);
+        oledShowWeight((abs(displayWeight) < 2) ? 0 : displayWeight);
         oledSetPriority(DISPLAY_PRIORITY_STATUS, 0);  // Weight can always be overwritten
       }
       mainTaskWasPaused = false;
