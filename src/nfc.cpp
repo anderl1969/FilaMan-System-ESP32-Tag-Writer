@@ -1650,21 +1650,33 @@ void writeJsonToTag(void *parameter) {
   sendNfcData();
   vTaskDelay(pdMS_TO_TICKS(100));
   
-  // Show waiting message for tag detection
-  oledShowProgressBar(0, 1, "Write Tag", "Warte auf Tag");
-  oledSetPriority(DISPLAY_PRIORITY_ACTION, 2000);
+  // Show initial waiting message with countdown
+  oledShowProgressBar(0, 30, "Write Tag", "Warte... 30s");
+  oledSetPriority(DISPLAY_PRIORITY_ACTION, 1500);
   
   // Wait up to 30 seconds for tag
   uint8_t success = 0;
   String uidString = "";
   uint8_t uidLength = 0;
   unsigned long startTime = millis();
+  uint8_t lastSecondsShown = 30;
   
   while (millis() - startTime < 30000) {
     uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID
     // yield before potentially waiting for 400ms
     yield();
     esp_task_wdt_reset();
+    
+    // Update countdown display every second
+    unsigned long elapsed = millis() - startTime;
+    uint8_t remainingSeconds = (30000 - elapsed) / 1000;
+    if (remainingSeconds != lastSecondsShown) {
+      lastSecondsShown = remainingSeconds;
+      char countdownText[20];
+      snprintf(countdownText, sizeof(countdownText), "Warte... %ds", remainingSeconds);
+      oledShowProgressBar(elapsed / 1000, 30, "Write Tag", countdownText);
+      oledSetPriority(DISPLAY_PRIORITY_ACTION, 1500);
+    }
     
     success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, 400);
     
