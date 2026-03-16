@@ -28,6 +28,8 @@
 #define DISPLAY_UPDATE_INTERVAL             1000U
 #define FILAMAN_HEARTBEAT_INTERVAL          60000U
 
+#define NUM_SETUP_STEPS                     5   // 0:Display 1:WiFi 2:Web-Server 3:??? 4:??? 5:NFC
+
 extern const uint8_t PN532_IRQ;
 extern const uint8_t PN532_RESET;
 
