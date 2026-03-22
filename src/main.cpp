@@ -64,7 +64,8 @@ void setup() {
   // scaleTareRequest = true;
 
   // Clear Display after Boot
-  oledShowWeight(0);
+  // oledShowWeight(0);
+  oledDisplayText("ready");
 
   // WDT initialisieren mit 10 Sekunden Timeout
   bool panic = true; // Wenn true, löst ein WDT-Timeout einen System-Panik aus
@@ -122,6 +123,10 @@ void loop() {
           oledShowConnectionError(tr(STR_API_CONN_LOST), WiFi.localIP().toString());
           oledSetPriority(DISPLAY_PRIORITY_WARNING, 3000);
           mainTaskWasPaused = true;
+      } else {
+          // everything fine again
+          // oledShowWeight(0);
+          oledDisplayText("ready");
       }
   }
 
