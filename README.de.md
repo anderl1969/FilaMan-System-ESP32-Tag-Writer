@@ -79,7 +79,7 @@ Weitere Bilder finden Sie im [img Ordner](/img/)
 
 **!! Stellen Sie sicher, dass die DIP-Schalter am PN532 auf I2C eingestellt sind.**
 
-![Verkabelung](./img/Schaltplan.png)
+![Verkabelung](./img/Schaltplan%20NFC%20Tag%20Writer.png)
 
 ## Software-Abhängigkeiten
 
