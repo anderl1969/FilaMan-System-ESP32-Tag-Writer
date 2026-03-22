@@ -9,6 +9,7 @@
 #include "scale.h"
 #include "main.h"
 #include "lang.h"
+#include "sound.h"
 
 //Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS);
 Adafruit_PN532 nfc(PN532_IRQ, PN532_RESET);
@@ -1118,7 +1119,7 @@ uint8_t ntag2xx_WriteNDEF(const char *payload) {
   }
 
   Serial.println("==================================================================");
-
+  playSuccessJingle(); // plays a little sound to signal success
   return 1;
 }
 
