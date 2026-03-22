@@ -40,6 +40,10 @@ extern const uint16_t SCALE_LEVEL_WEIGHT;
 
 extern const uint8_t TTP223_PIN;
 
+extern const uint8_t BUZZER_PIN;
+extern const uint8_t BUZZER_CHANNEL;
+extern const uint8_t BUZZER_RESOLUTION;
+
 extern const uint8_t OLED_TOP_START;
 extern const uint8_t OLED_TOP_END;
 extern const uint8_t OLED_DATA_START;
