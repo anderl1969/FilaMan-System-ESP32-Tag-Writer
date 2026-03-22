@@ -20,11 +20,13 @@ Es soll ein schlanke Variante des originalen Designs sein, das sich nahtlos auf 
 Zugunsten eines geringeren Platzbedarfs verzichtet es auf eine Waage. Dadurch wird auch die Unterstützung des Touch-Sensors obsolet.
 Als Erweiterung gegenüber dem Original verwendet es einen passiven Piezo-Summer, zum Abspielen akkustischer Signale.
 
-| | Feature |
+| | Feature Vergleich[<sup>*</sup>](#1)|
 |---- |---- |
 | - | Waage |
 | - | Touch |
 | + | Buzzer|
+
+<sup>*) im Vergleich zum original [Fire-Devils/FilaMan-System-ESP32](https://github.com/Fire-Devils/FilaMan-System-ESP32).<a class="anchor" id="1"></a></sup>
 
 ![Waage](./img/FilaLite_no_scale.png)
 

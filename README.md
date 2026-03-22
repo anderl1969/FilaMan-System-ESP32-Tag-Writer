@@ -20,11 +20,14 @@ Its purpose is a slim alternative to the original design integrating seamlessly 
 In favor of a smaller footprint, it omits a scale. This also makes support for the touch sensor obsolete.
 As an extension compared to the original, it uses a passive piezo buzzer to play acoustic signals.
 
-| | Feature |
+| | Feature Comparison[<sup>*</sup>](#1)|
 |---- |---- |
 | - | Scale |
 | - | Touch |
 | + | Buzzer|
+
+<sup>*) compared to the original [Fire-Devils/FilaMan-System-ESP32](https://github.com/Fire-Devils/FilaMan-System-ESP32).<a class="anchor" id="1"></a></sup>
+
 
 
 ![Scale](./img/FilaLite_no_scale.png)
