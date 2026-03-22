@@ -125,7 +125,7 @@ When you scan a manufacturer NFC tag for the first time:
 **!! Make sure that the DIP switches on the PN532 are set to I2C**  
 **Use the 3V pin from the ESP for the touch sensor**
 
-![Wiring](./img/Schaltplan.png)
+![Wiring](./img/Schaltplan%20NFC%20Tag%20Writer.png)
 
 ![myWiring](./img/IMG_2589.jpeg)
 ![myWiring](./img/IMG_2590.jpeg)
