@@ -125,7 +125,7 @@ Wenn Sie einen Hersteller-NFC-Tag zum ersten Mal scannen:
 **!! Stellen Sie sicher, dass die DIP-Schalter am PN532 auf I2C eingestellt sind.**  
 **Verwenden Sie den 3V-Pin des ESP für den Touch-Sensor.**
 
-![Verkabelung](./img/Schaltplan.png)
+![Verkabelung](./img/Schaltplan%20NFC%20Tag%20Writer.png)
 
 ![meineVerkabelung](./img/IMG_2589.jpeg)
 ![meineVerkabelung](./img/IMG_2590.jpeg)
