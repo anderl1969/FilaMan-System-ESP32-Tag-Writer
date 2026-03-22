@@ -1,4 +1,11 @@
-# FilaMan - Filament Management System
+# FilaMan TAG Writer
+
+- Schlankes **NFC-Terminal** für das FilaMan System
+- Kleine Bauform
+- Ideal für den Schreibtisch
+- Mit **Sound** Ausgabe :)
+
+## FilaMan - Filament Management System
 
 ⚠️ **Wichtig: Ab Version 3.0.0 erfordert dieses System das [FilaMan-System](https://github.com/Fire-Devils/filaman-system) Backend. Frühere direkte Integrationen (Spoolman, MQTT, Bambu Lab) wurden in das zentrale FilaMan-System verschoben.**
 
