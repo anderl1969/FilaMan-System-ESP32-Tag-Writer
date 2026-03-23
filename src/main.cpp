@@ -80,7 +80,7 @@ void setup() {
   else {
     // Clear Display after Boot
     // oledShowWeight(0);
-    oledDisplayText("ready");
+    oledDisplayText(tr(STR_NOSCALE_PROMPT));
   }
 
   // WDT initialisieren mit 10 Sekunden Timeout
@@ -145,7 +145,7 @@ void loop() {
       } else if (!hasScale || !scalePresence) {
           // everything fine again: without scale manual clearing of the error msg is needed
           // oledShowWeight(0);
-          oledDisplayText("ready");
+          oledDisplayText(tr(STR_NOSCALE_PROMPT));
       }
   }
 
