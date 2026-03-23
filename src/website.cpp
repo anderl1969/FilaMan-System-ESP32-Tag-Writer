@@ -58,6 +58,7 @@ void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventTyp
                 "\"freeHeap\":" + String(ESP.getFreeHeap()/1024) + ","
                 "\"filaman_connected\":" + String(filamanConnected) + ","
                 "\"registered\":" + String(filamanRegistered) + ","
+                "\"scalePresence\":" + String(scalePresence ? "true" : "false") + ","
                 "\"autoTare\":" + String(autoTare ? "true" : "false") + ""
                 "}");
         }
@@ -75,6 +76,14 @@ void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventTyp
             }
             else if (doc["payload"] == "calibrate") {
                 scaleCalibrationRequest = true;
+                ws.textAll("{\"type\":\"scale\",\"payload\":\"success\"}");
+            }
+            else if (doc["payload"] == "reboot") {
+                scaleRebootRequest = true;
+                ws.textAll("{\"type\":\"scale\",\"payload\":\"success\"}");
+            }
+            else if (doc["payload"] == "setScalePresence") {
+                setScalePresence(doc["enabled"].as<bool>());
                 ws.textAll("{\"type\":\"scale\",\"payload\":\"success\"}");
             }
             else if (doc["payload"] == "setAutoTare") {
@@ -114,7 +123,7 @@ void sendNfcData() {
 }
 
 void setupWebserver(AsyncWebServer &server) {
-    oledShowProgressBar(2, NUM_SETUP_STEPS, DISPLAY_BOOT_TEXT, tr(STR_WEBSERVER_INIT));
+    oledShowProgressBar(2, actualSetupSteps, DISPLAY_BOOT_TEXT, tr(STR_WEBSERVER_INIT));
 
     ws.onEvent(onWsEvent);
     server.addHandler(&ws);
@@ -130,6 +139,7 @@ void setupWebserver(AsyncWebServer &server) {
     server.on("/waage", HTTP_GET, [](AsyncWebServerRequest *request){
         Serial.println("Web: Request /waage");
         String html = readFile("/waage.html");
+        html.replace("{{scalePresence}}", scalePresence ? "checked" : "");
         html.replace("{{autoTare}}", autoTare ? "checked" : "");
         auto response = request->beginResponse(200, "text/html", html);
         response->addHeader("Cache-Control", NO_CACHE);

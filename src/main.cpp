@@ -31,6 +31,15 @@ void setup() {
   Serial.printf("ESP32 Chip ID = %04X", (uint16_t)(chipid >> 32)); //print High 2 bytes
   Serial.printf("%08X\n", (uint32_t)chipid); //print Low 4bytes.
 
+  // Check if scale support is wanted
+  // hasScale:          is set by compiler build flag
+  // isScaleEnabled():  checks user configuration in settings-website of device
+  // both MUST be true!
+  // make sure isScaleEnabled() is called, so bool scalePresence is set for further checks
+  if (!(isScaleEnabled() && hasScale)){
+    actualSetupSteps--;
+  }
+
   // Initialize SPIFFS
   initializeFileSystem();
 
@@ -64,12 +73,15 @@ void setup() {
   }
 
   // Scale
-  // start_scale(touchSensorConnected);
-  // scaleTareRequest = true;
-
-  // Clear Display after Boot
-  // oledShowWeight(0);
-  oledDisplayText("ready");
+    if (hasScale && scalePresence){
+    start_scale(touchSensorConnected);
+    scaleTareRequest = true;
+  }
+  else {
+    // Clear Display after Boot
+    // oledShowWeight(0);
+    oledDisplayText("ready");
+  }
 
   // WDT initialisieren mit 10 Sekunden Timeout
   bool panic = true; // Wenn true, löst ein WDT-Timeout einen System-Panik aus
@@ -130,19 +142,19 @@ void loop() {
           oledShowConnectionError(tr(STR_API_CONN_LOST), WiFi.localIP().toString());
           oledSetPriority(DISPLAY_PRIORITY_WARNING, 3000);
           mainTaskWasPaused = true;
-      } else {
-          // everything fine again
+      } else if (!hasScale || !scalePresence) {
+          // everything fine again: without scale manual clearing of the error msg is needed
           // oledShowWeight(0);
           oledDisplayText("ready");
       }
   }
 
-  // Überprüfe den Status des Touch Sensors
-  // if (touchSensorConnected && digitalRead(TTP223_PIN) == HIGH && currentMillis - lastButtonPress > debounceDelay)
-  // {
-  //   lastButtonPress = currentMillis;
-  //   scaleTareRequest = true;
-  // }
+  // Überprüfe den Status des Touch Sensors (nur wenn Waage aktiviert!)
+  if (hasScale && scalePresence && touchSensorConnected && digitalRead(TTP223_PIN) == HIGH && currentMillis - lastButtonPress > debounceDelay)
+  {
+    lastButtonPress = currentMillis;
+    scaleTareRequest = true;
+  }
 
   // Überprüfe regelmäßig die WLAN-Verbindung
   if (intervalElapsed(currentMillis, lastWifiCheckTime, WIFI_CHECK_INTERVAL))
@@ -267,4 +279,11 @@ void loop() {
   //   }
   // }
   esp_task_wdt_reset();
+
+  // Reboot device if requested
+  if (scaleRebootRequest) {
+      scaleRebootRequest = false;
+      ESP.restart();
+  }
+
 }

@@ -11,6 +11,7 @@
 #define NVS_NAMESPACE_SCALE                 "scale"
 #define NVS_KEY_CALIBRATION                 "cal_value"
 #define NVS_KEY_AUTOTARE                    "auto_tare"
+#define NVS_KEY_SCALE_ENABLED               "scale_enabled"
 
 #define NVS_NAMESPACE_SETTINGS             "settings"
 #define NVS_KEY_LANGUAGE                    "language"
@@ -28,7 +29,10 @@
 #define DISPLAY_UPDATE_INTERVAL             1000U
 #define FILAMAN_HEARTBEAT_INTERVAL          60000U
 
-#define NUM_SETUP_STEPS                     5   // 0:Display 1:WiFi 2:Web-Server 3:??? 4:??? 5:NFC
+#define NUM_SETUP_STEPS                     6   // 0:Display 1:WiFi 2:Web-Server 3:??? 4:??? 5:NFC 6:Scale
+#ifndef NOSCALE
+  #define NOSCALE 0
+#endif
 
 extern const uint8_t PN532_IRQ;
 extern const uint8_t PN532_RESET;
@@ -37,6 +41,7 @@ extern const uint8_t LOADCELL_DOUT_PIN;
 extern const uint8_t LOADCELL_SCK_PIN;
 extern const uint8_t calVal_eepromAdress;
 extern const uint16_t SCALE_LEVEL_WEIGHT;
+extern bool hasScale;
 
 extern const uint8_t TTP223_PIN;
 
@@ -76,4 +81,7 @@ extern uint8_t scaleTaskCore;
 extern uint8_t scaleTaskPrio;
 
 extern uint16_t defaultScaleCalibrationValue;
+
+extern bool scaleRebootRequest;
+extern u_int8_t actualSetupSteps;
 #endif

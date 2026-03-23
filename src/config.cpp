@@ -16,6 +16,7 @@ const uint8_t LOADCELL_DOUT_PIN = 16; //16;
 const uint8_t LOADCELL_SCK_PIN = 17; //17;
 const uint8_t calVal_eepromAdress = 0;
 const uint16_t SCALE_LEVEL_WEIGHT = 500;
+bool hasScale = (NOSCALE == 0);
 // ***** HX711
 
 // ***** TTP223 (Touch Sensor)
@@ -59,3 +60,8 @@ uint8_t rfidWriteTaskPrio = 1;
 uint8_t scaleTaskCore = 0;
 uint8_t scaleTaskPrio = 1;
 // ***** Task Prios
+
+// ***** common
+bool scaleRebootRequest = false;
+u_int8_t actualSetupSteps = NUM_SETUP_STEPS;
+// ***** common

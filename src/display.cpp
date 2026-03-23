@@ -57,7 +57,7 @@ void setupDisplay() {
 
 
     oledShowTopRow();
-    oledShowProgressBar(0, NUM_SETUP_STEPS, DISPLAY_BOOT_TEXT, tr(STR_DISPLAY_INIT));
+    oledShowProgressBar(0, actualSetupSteps, DISPLAY_BOOT_TEXT, tr(STR_DISPLAY_INIT));
 }
 
 void oledclearline() {

@@ -2225,7 +2225,7 @@ void scanRfidTask(void * parameter) {
 
 void startNfc() {
   nfcRequestMutex = xSemaphoreCreateMutex();
-  oledShowProgressBar(5, NUM_SETUP_STEPS, DISPLAY_BOOT_TEXT, tr(STR_NFC_INIT));
+  oledShowProgressBar(5, actualSetupSteps, DISPLAY_BOOT_TEXT, tr(STR_NFC_INIT));
   nfc.begin();                                           // Beginne Kommunikation mit RFID Leser
 
   delay(1000);
