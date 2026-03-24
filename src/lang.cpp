@@ -76,7 +76,7 @@ static const char EN_WIFI_RECONN[]       = "WiFi reconnecting";
 static const char EN_UPDATE[]            = "Update";
 static const char EN_DOWNLOAD[]          = "Download";
 
-static const char EN_NOSCALE_PROMPT[]    = "ready";
+static const char EN_NOSCALE_PROMPT[]    = "ready...";
 
 // =====================================================================
 // German strings
@@ -150,7 +150,7 @@ static const char DE_WIFI_RECONN[]       = "WiFi Neuverbindung";
 static const char DE_UPDATE[]            = "Update";
 static const char DE_DOWNLOAD[]          = "Download";
 
-static const char DE_NOSCALE_PROMPT[]    = "bereit";
+static const char DE_NOSCALE_PROMPT[]    = "bereit...";
 
 // =====================================================================
 // String table: [StringID][Lang]
